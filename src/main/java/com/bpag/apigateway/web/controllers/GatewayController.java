@@ -4,11 +4,14 @@ import com.bpag.apigateway.services.interfaces.IGatewayRabbitMQConfiguration;
 import com.bpag.apigateway.utilities.GatewayMapperUtil;
 import com.bpag.apigateway.utilities.enums.GatewayQueueEnum;
 import com.bpag.apigateway.web.dtos.requests.*;
+import com.bpag.apigateway.web.dtos.responses.BaseResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
 @Slf4j
@@ -17,6 +20,9 @@ public class GatewayController {
 
     @Autowired
     private IGatewayRabbitMQConfiguration rabbitMQ;
+
+    @Autowired
+    private SimpMessagingTemplate simpMessagingTemplate;
 
     @MessageMapping("/sign-up")
     private void createUserRequest(@Payload SignUpUserRequest request) throws JsonProcessingException {
@@ -60,6 +66,14 @@ public class GatewayController {
 
     @MessageMapping("/local-reservation")
     private void localReservationRequest(@Payload LocalReservationRequest request) throws JsonProcessingException {
+        rabbitMQ.sendRequests(GatewayQueueEnum.QUEUE_RESERVATION_LOCAL.getQueue(), GatewayMapperUtil.serialize(request));
+    }
+
+    @SendTo("/sp32-response")
+    private void sp32ReservationRequest(@Payload LocalReservationRequest request) throws JsonProcessingException {
+        //BaseResponse payload = baseResponse.baseResponse(walletResponse);
+        simpMessagingTemplate.convertAndSend("/private", request);
+
         rabbitMQ.sendRequests(GatewayQueueEnum.QUEUE_RESERVATION_LOCAL.getQueue(), GatewayMapperUtil.serialize(request));
     }
 

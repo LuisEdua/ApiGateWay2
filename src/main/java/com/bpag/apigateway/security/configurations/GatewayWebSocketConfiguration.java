@@ -23,7 +23,9 @@ public class GatewayWebSocketConfiguration implements WebSocketMessageBrokerConf
                                             "/wallet-reservation",
                                             "/cancel-reservation",
                                             "/update-reservation",
-                                            "/local-reservation"};
+                                            "/local-reservation",
+                                            "/sp32",
+                                            "/sp32-response"};
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry){
@@ -34,7 +36,7 @@ public class GatewayWebSocketConfiguration implements WebSocketMessageBrokerConf
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry){
-        registry.addEndpoint("/ws").setAllowedOriginPatterns("http://localhost:8080","https://ec2-100-24-11-98.compute-1.amazonaws.com:8080");
+        registry.addEndpoint("/ws").setAllowedOriginPatterns("http://ec2-100-24-11-98.compute-1.amazonaws.com:8080");
         //registry.addEndpoint("/ws").setAllowedOriginPatterns("*");
     }
 
