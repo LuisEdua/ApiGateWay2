@@ -1,5 +1,6 @@
 package com.bpag.apigateway.services;
 
+import com.bpag.apigateway.ApiGatewayApplication;
 import com.bpag.apigateway.persistances.entities.Session;
 import com.bpag.apigateway.persistances.repositories.ISessionRepository;
 import com.bpag.apigateway.services.interfaces.ISessionService;
@@ -7,7 +8,9 @@ import com.bpag.apigateway.web.dtos.responses.BaseResponse;
 import com.bpag.apigateway.web.dtos.responses.SessionResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
