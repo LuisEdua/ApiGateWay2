@@ -7,4 +7,6 @@ public interface ICredentialService {
 
     Credential getToken(String username);
 
+    BaseResponse walletLocal(String email);
+
 }
