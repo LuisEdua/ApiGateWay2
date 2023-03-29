@@ -6,7 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-//@Repository
-public interface ICredentialRepository {//extends JpaRepository<Credential, Long>{
-   // Optional<Credential> findByCredentialEmail(String email);
+@Repository
+public interface ICredentialRepository extends JpaRepository<Credential, Long>{
+    Optional<Credential> findByCredentialEmail(String email);
+
 }

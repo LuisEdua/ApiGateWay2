@@ -5,6 +5,6 @@ import com.bpag.apigateway.web.dtos.responses.BaseResponse;
 
 public interface ICredentialService {
 
-    //Credential getToken();
+    Credential getToken(String username);
 
 }
