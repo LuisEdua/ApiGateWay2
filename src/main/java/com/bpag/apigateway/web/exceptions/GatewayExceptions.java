@@ -18,7 +18,7 @@ public class GatewayExceptions {
     @Autowired
     private GatewayBasicResponseConfiguration baseResponse;
 
-    @RabbitListener(queues = "queue.users_errors")
+    /*@RabbitListener(queues = "queue.users_errors")
     public void exceptionUsers(String exception) throws IOException {
         BaseResponse exceptions = baseResponse.exceptions(exception);
         simpMessagingTemplate.convertAndSendToUser(exceptions.getSessionId(),"/exceptions", exceptions);
@@ -28,7 +28,7 @@ public class GatewayExceptions {
     public void exceptionReservations(String exception) throws IOException {
         BaseResponse exceptions = baseResponse.exceptions(exception);
         simpMessagingTemplate.convertAndSendToUser(exceptions.getSessionId(),"/exceptions", exceptions);
-    }
+    }*/
 
     @RabbitListener(queues = "queue.errors")
     public void exception(String exception) throws IOException {

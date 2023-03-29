@@ -30,9 +30,9 @@ public class GatewayService {
         simpMessagingTemplate.convertAndSendToUser(payload.getSessionId(), "/private", payload);
     }
 
-    @RabbitListener(queues = "queue.admin_response")
-    public void adminResponse(String adminResponse) throws IOException {
-        BaseResponse payload = baseResponse.baseResponse(adminResponse);
+    @RabbitListener(queues = "queue.wallet_response")
+    public void walletResponse(String walletResponse) throws IOException {
+        BaseResponse payload = baseResponse.baseResponse(walletResponse);
         simpMessagingTemplate.convertAndSendToUser(payload.getSessionId(),"/private", payload);
     }
 

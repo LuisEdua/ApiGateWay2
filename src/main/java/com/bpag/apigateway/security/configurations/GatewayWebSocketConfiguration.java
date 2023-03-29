@@ -11,15 +11,19 @@ import org.springframework.web.socket.config.annotation.WebSocketTransportRegist
 @Configuration
 public class GatewayWebSocketConfiguration implements WebSocketMessageBrokerConfigurer {
 
-    private final String[] URL_WEBSOCKET = {"/signin",
-                                            "/signup",
-                                            "/admin",
-                                            "/reseve",
+    private final String[] URL_WEBSOCKET = {"/sign-in",
+                                            "/sign-up",
+                                            "/create-wallet-request",
+                                            "/reserve",
                                             "/response",
                                             "/get-list-reservation",
                                             "/get-reservation",
                                             "/add-money-wallet",
-                                            "/get-report-admin"};
+                                            "/get-report-admin",
+                                            "/wallet-reservation",
+                                            "/cancel-reservation",
+                                            "/update-reservation",
+                                            "/local-reservation"};
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry){
