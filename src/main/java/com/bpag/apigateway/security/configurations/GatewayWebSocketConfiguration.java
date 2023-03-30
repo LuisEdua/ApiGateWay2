@@ -24,7 +24,7 @@ public class GatewayWebSocketConfiguration implements WebSocketMessageBrokerConf
                                             "/cancel-reservation",
                                             "/update-reservation",
                                             "/local-reservation",
-                                            "/sp32",
+                                            "/esp32",
                                             "/sp32-response"};
 
     @Override

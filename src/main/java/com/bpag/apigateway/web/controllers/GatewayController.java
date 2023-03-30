@@ -92,4 +92,9 @@ public class GatewayController {
         rabbitMQ.sendRequests(GatewayQueueEnum.QUEUE_WALLET_CREATE.getQueue(), GatewayMapperUtil.serialize(request));
     }
 
+    @MessageMapping("/wallet-details")
+    private void details(@Payload WalletDetailsRequest request) throws JsonProcessingException {
+        rabbitMQ.sendRequests("queue.wallet_money", GatewayMapperUtil.serialize(request));
+    }
+
 }

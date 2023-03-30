@@ -2,6 +2,7 @@ package com.bpag.apigateway.services;
 
 import com.bpag.apigateway.security.configurations.GatewayBasicResponseConfiguration;
 import com.bpag.apigateway.web.dtos.responses.BaseResponse;
+import com.fasterxml.jackson.core.*;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -34,6 +35,12 @@ public class GatewayService {
     public void walletResponse(String walletResponse) throws IOException {
         BaseResponse payload = baseResponse.baseResponse(walletResponse);
         simpMessagingTemplate.convertAndSendToUser(payload.getSessionId(),"/private", payload);
+    }
+
+    @RabbitListener(queues = "queue.wallet_esp_response")
+    public void walletCreateResponse(String payloadString) throws JsonProcessingException {
+        BaseResponse payload = baseResponse.baseResponse(payloadString);
+        simpMessagingTemplate.convertAndSend("/esp32", payload);
     }
 
 }
