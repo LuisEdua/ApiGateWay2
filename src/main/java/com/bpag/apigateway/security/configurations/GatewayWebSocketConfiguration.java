@@ -36,7 +36,7 @@ public class GatewayWebSocketConfiguration implements WebSocketMessageBrokerConf
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry){
-        registry.addEndpoint("/ws").setAllowedOriginPatterns("http://ec2-100-24-11-98.compute-1.amazonaws.com:8080");
+        registry.addEndpoint("/ws").setAllowedOriginPatterns("*");
         //registry.addEndpoint("/ws").setAllowedOriginPatterns("*");
     }
 
