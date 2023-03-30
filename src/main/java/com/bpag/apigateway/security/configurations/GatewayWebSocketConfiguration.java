@@ -36,8 +36,12 @@ public class GatewayWebSocketConfiguration implements WebSocketMessageBrokerConf
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry){
-        registry.addEndpoint("/ws").setAllowedOriginPatterns("*").setAllowedOrigins("*");
-        //registry.addEndpoint("/ws").setAllowedOriginPatterns("*");
+        registry.addEndpoint("/ws")
+                .setAllowedOriginPatterns("http://localhost:5173", "http://example.com")
+                .setAllowedOrigins("*")
+                .withSockJS()
+                .setWebSocketEnabled(true)
+                .setSessionCookieNeeded(true);
     }
 
     @Override
