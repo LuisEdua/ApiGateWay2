@@ -15,6 +15,7 @@ public class GatewayWebSocketConfiguration implements WebSocketMessageBrokerConf
                                             "/sign-up",
                                             "/create-wallet-request",
                                             "/reserve",
+                                            "/get-slots",
                                             "/response",
                                             "/get-list-reservation",
                                             "/get-reservation",
@@ -25,6 +26,7 @@ public class GatewayWebSocketConfiguration implements WebSocketMessageBrokerConf
                                             "/update-reservation",
                                             "/local-reservation",
                                             "/esp32",
+                                            "/wallet-details",
                                             "/sp32-response"};
 
     @Override
