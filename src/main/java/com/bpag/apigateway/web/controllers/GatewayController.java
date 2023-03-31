@@ -97,4 +97,9 @@ public class GatewayController {
         rabbitMQ.sendRequests("queue.wallet_money", GatewayMapperUtil.serialize(request));
     }
 
+    @MessageMapping("/get-slots")
+    private void getSlot(@Payload String request) {//throws JsonProcessingException {
+        rabbitMQ.sendRequests("queue.get_slots", request);//GatewayMapperUtil.serialize(request));
+    }
+
 }

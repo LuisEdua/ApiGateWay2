@@ -43,4 +43,10 @@ public class GatewayService {
         simpMessagingTemplate.convertAndSend("/esp32", payload);
     }
 
+    @RabbitListener(queues = " queue.get_slots_response")
+    public void getSlotResponse(String getSlotResponse) throws IOException {
+        BaseResponse payload = baseResponse.baseResponse(getSlotResponse);
+        simpMessagingTemplate.convertAndSendToUser(payload.getSessionId(), "/private", payload);
+    }
+
 }
