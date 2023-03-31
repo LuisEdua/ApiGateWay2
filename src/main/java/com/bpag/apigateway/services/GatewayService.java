@@ -22,7 +22,7 @@ public class GatewayService {
     @RabbitListener(queues = "queue.users_responses")
     public void createUserResponse(String userCreatedResponse) throws IOException {
         BaseResponse payload = baseResponse.baseResponse(userCreatedResponse);
-        simpMessagingTemplate.convertAndSendToUser(payload.getSessionId(), "/private", payload);
+        simpMessagingTemplate.convertAndSendToUser(payload.getSessionId(), "/private/users", payload);
     }
 
     @RabbitListener(queues = "queue.reservation_responses")
