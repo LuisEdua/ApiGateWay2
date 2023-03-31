@@ -43,6 +43,12 @@ public class GatewayService {
         simpMessagingTemplate.convertAndSend("/esp32", payload);
     }
 
+    @RabbitListener(queues = "queue.wallet_cash_response")
+    public void cashResponse(String payloadString) throws JsonProcessingException {
+        BaseResponse payload = baseResponse.baseResponse(payloadString);
+        simpMessagingTemplate.convertAndSendToUser(payload.getSessionId(),"/cash", payload);
+    }
+
     @RabbitListener(queues = "queue.get_slots_response")
     public void getSlotResponse(String getSlotResponse) throws IOException {
         BaseResponse payload = baseResponse.baseResponse(getSlotResponse);
