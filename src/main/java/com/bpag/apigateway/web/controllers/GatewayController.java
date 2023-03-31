@@ -40,7 +40,7 @@ public class GatewayController {
     }
 
     @MessageMapping("/get-reservation")
-    private void getReservationRequest(@Payload GetReservationRequest request) throws JsonProcessingException {
+    private void getReservationListRequest(@Payload GetReservationRequest request) throws JsonProcessingException {
         rabbitMQ.sendRequests(GatewayQueueEnum.QUEUE_RESERVATION_DAY_LIST.getQueue(), GatewayMapperUtil.serialize(request));
     }
 

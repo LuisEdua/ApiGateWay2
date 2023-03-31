@@ -31,6 +31,12 @@ public class GatewayService {
         simpMessagingTemplate.convertAndSendToUser(payload.getSessionId(), "/private", payload);
     }
 
+    @RabbitListener(queues = "queue.reservation_list_response")
+    public void yaporfavorListReservationsOfTheDay(String pay) throws JsonProcessingException {
+        BaseResponse payload = baseResponse.baseResponse(pay);
+        simpMessagingTemplate.convertAndSendToUser(payload.getSessionId(), "/reservations", payload);
+    }
+
     @RabbitListener(queues = "queue.wallet_response")
     public void walletResponse(String walletResponse) throws IOException {
         BaseResponse payload = baseResponse.baseResponse(walletResponse);
