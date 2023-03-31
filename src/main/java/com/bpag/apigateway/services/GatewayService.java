@@ -19,7 +19,6 @@ public class GatewayService {
     @Autowired
     private GatewayBasicResponseConfiguration baseResponse;
 
-    /*
     @RabbitListener(queues = "queue.users_responses")
     public void createUserResponse(String userCreatedResponse) throws IOException {
         BaseResponse payload = baseResponse.baseResponse(userCreatedResponse);
@@ -61,5 +60,5 @@ public class GatewayService {
         BaseResponse payload = baseResponse.baseResponse(getSlotResponse);
         simpMessagingTemplate.convertAndSendToUser(payload.getSessionId(), "/private", payload);
     }
-*/
+
 }
