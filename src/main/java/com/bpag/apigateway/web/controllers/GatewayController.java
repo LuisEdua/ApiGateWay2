@@ -98,8 +98,8 @@ public class GatewayController {
     }
 
     @MessageMapping("/get-slots")
-    private void getSlot(@Payload String request) {//throws JsonProcessingException {
-        rabbitMQ.sendRequests("queue.get_slots", request);//GatewayMapperUtil.serialize(request));
+    private void getSlot(@Payload GetSlotRequest request) throws JsonProcessingException {
+        rabbitMQ.sendRequests("queue.get_slots", GatewayMapperUtil.serialize(request));
     }
 
 }
